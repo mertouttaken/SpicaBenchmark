@@ -1,0 +1,14 @@
+name: SpicaBenchmark
+version: 1.0.0
+main: com.mertout.benchmark.SpicaBenchmark
+api-version: 1.16
+author: mertout
+softdepend: [SuperiorSkyblock2]
+
+commands:
+  benchmark:
+    permission: spica.admin
+
+permissions:
+  spica.admin:
+    default: op
