@@ -40,6 +40,12 @@ public class SpicaBenchmark extends JavaPlugin {
         IslandSurgeonCollector surgeon = new IslandSurgeonCollector();
         Bukkit.getPluginManager().registerEvents(surgeon, this);
 
+        ChunkThrashCollector thrashDetector = new ChunkThrashCollector();
+        Bukkit.getPluginManager().registerEvents(thrashDetector, this);
+        collectors.add(thrashDetector);
+
+        collectors.add(new AITrafficCollector());
+
         // --- 2. KOLEKTÖR LİSTESİNE KAYIT ---
         collectors.add(tickCollector);
         collectors.add(new CPUCollector());

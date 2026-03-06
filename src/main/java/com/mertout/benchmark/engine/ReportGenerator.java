@@ -77,6 +77,30 @@ public class ReportGenerator {
                     hasCriticalInfo = true;
                 }
             }
+            else if (c.getName().equals("Chunk Thrash Detector")) {
+                List<String> thrashPoints = (List<String>) c.getRawMetrics().get("ThrashPoints");
+                if (thrashPoints != null && !thrashPoints.isEmpty()) {
+                    report.add(ChatColor.RED + "" + ChatColor.BOLD + "🚨 CHUNK THRASHING (Disko Modu):");
+                    for (String point : thrashPoints) {
+                        report.add("  " + point);
+                    }
+                    report.add(ChatColor.GRAY + "  Tavsiye: Görüş mesafesini (View Distance) sabitleyin veya");
+                    report.add(ChatColor.GRAY + "  sürekli chunk yükleyen eklentileri kontrol edin.");
+                }
+            }
+            else if (c.getName().equals("AI Traffic Radar")) {
+                Map<String, Object> metrics = c.getRawMetrics();
+                Map<String, Integer> hotspots = (Map<String, Integer>) metrics.get("AIHotspots");
+
+                if (hotspots != null && !hotspots.isEmpty()) {
+                    report.add("");
+                    report.add(ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "🧠 AI TRAFFIC JAM (Pathfinding Load):");
+                    hotspots.forEach((loc, count) -> {
+                        report.add(ChatColor.GRAY + " - " + ChatColor.WHITE + loc + ChatColor.RED + " -> " + count + " mob yol hesaplıyor!");
+                    });
+                    report.add(ChatColor.GRAY + "  Tavsiye: Bu chunklardaki mobları dar alanlardan çıkarın.");
+                }
+            }
         }
 
         // 4. AKILLI ANALİZ (Öneriler)
